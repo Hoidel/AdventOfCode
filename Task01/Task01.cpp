@@ -1,20 +1,38 @@
-// Task01.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <string>
+
+int cToInt(char c) {
+    return c - '0';
+}
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    int total = 0;
+    for (std::string line; std::getline(std::cin, line);) {
+        std::cout << "Line: " << line << std::endl;
+
+        int number = 0;
+        for (std::string::size_type i = 0;  i < line.size(); ++i) {
+            //std::cout << line[i] << std::endl;
+            if (isdigit(line[i]))
+            {
+                std::cout << "First Digit: " << line[i] << std::endl;
+                number += cToInt(line[i]) * 10;
+                break;
+            }            
+        }
+
+        for (std::string::size_type i = line.size() - 1; i >= 0; --i) {
+            //std::cout << line[i] << std::endl;
+            if (isdigit(line[i]))
+            {
+                std::cout << "Last Digit: " << line[i] << std::endl;
+                number += cToInt(line[i]);
+                break;
+            }
+        }
+        std::cout << number << std::endl;
+        total += number;
+    }
+    std::cout << "Total Sum : " << total << std::endl;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
